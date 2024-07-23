@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content1 %}
+<section class="banner-area">
+		<div class="container">
+			<div class="row fullscreen align-items-center justify-content-start">
+				<div class="col-lg-12">
+					<div class="active-banner-slider owl-carousel">
+						<!-- single-slide -->
+						<div class="row single-slide align-items-center d-flex">
+							<div class="col-lg-5 col-md-6 mt-5">
+								<div class="banner-content">
+									<h1 class="mt-5">CART</h1>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="" alt="">
+								</div>
+							</div>
+						</div>
+						<!-- single-slide -->
+						<div class="row single-slide">
+							<div class="col-lg-5">
+								<div class="banner-content">
+									<h1>Nike New <br>Collection!</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+									<div class="add-bag d-flex align-items-center">
+										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+										<span class="add-text text-uppercase">Add to Bag</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="{% static 'img/banner/banner-img.png' %}" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block content2 %}
+<div class="row">
+		<div class="col-7">
+			<div class="container mt-5 pt-5">
+				<table class="table table-bordered">
+					<tr>
+						<th>Cart Items</th>
+					</tr>
+					{% for i in cart %}
+					<tr>
+						<td><a href="{% url 'shop:product' i.product.id %}"><img src="{{i.product.image.url}}" height="200px" width="200px"></a></td>
+						<td>{{i.product.name}}</td>
+						<td>{{i.product.id}}</td>
+						<td>Quantity: {{i.quantity}}<br>Unit Price: {{i.product.price}}</td>
+						<td>Subtotal: {{i.subtotal}}</td>
+
+						<td>
+							{% if i.product.stock > 0 %}
+								<a href="{% url 'cart:add_to_cart' i.product.id %}"><i class="fa-solid fa-circle-plus" style="color:black"></i></a> <br>
+								<a href="{% url 'cart:decrement' i.product.id %}"><i class="fa-solid fa-circle-minus" style="color:black"></i></a> <br>
+								<a href="{% url 'cart:remove' i.product.id i.id  %}"><i class="fa-solid fa-trash" style="color:black"></i></a>
+							{% else %}
+								<a href="{% url 'cart:decrement' i.product.id %}"><i class="fa-solid fa-circle-minus" style="color:black"></i></a> <br>
+								<a href="{% url 'cart:remove' i.product.id i.id %}"><i class="fa-solid fa-trash" style="color:black"></i></a>
+
+						</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="container mt-5 pt-5">
+				<table class="table table-bordered" style="width:50%;">
+					<tr>
+						<th>CheckOut</th>
+					</tr>
+					<tr>
+						<th>Total Amount : {{total}} </th>
+					</tr>
+				</table>
+				<div class="add-bag d-flex align-items-center">
+					<a class="add-btn" href="{% url 'cart:place_order' %}"><span class="lnr lnr-cross"></span></a>
+					<span class="add-text text-uppercase">Place Order</span>
+				</div>
+				<div class="add-bag d-flex align-items-center">
+					<a class="add-btn" href="{% url 'shop:home' %}"><span class=""></span></a>
+					<span class="add-text text-uppercase">Continue Shopping</span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

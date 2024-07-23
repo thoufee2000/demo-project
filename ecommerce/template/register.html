@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content1 %}
+<!-- start banner Area -->
+	<section class="banner-area">
+		<div class="container">
+			<div class="row fullscreen align-items-center justify-content-start">
+				<div class="col-lg-12">
+					<div class="active-banner-slider owl-carousel">
+						<!-- single-slide -->
+						<div class="row single-slide align-items-center d-flex">
+							<div class="col-lg-5 col-md-6 mt-5">
+								<div class="banner-content">
+									<h1>REGISTER</h1>
+<!--									<div class="add-bag d-flex align-items-center">-->
+<!--										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>-->
+<!--										<span class="add-text text-uppercase">Add to Bag</span>-->
+<!--									</div>-->
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="" alt="">
+								</div>
+							</div>
+						</div>
+						<!-- single-slide -->
+						<div class="row single-slide">
+							<div class="col-lg-5">
+								<div class="banner-content">
+									<h1>Nike New <br>Collection!</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+<!--									<div class="add-bag d-flex align-items-center">-->
+<!--										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>-->
+<!--										<span class="add-text text-uppercase">Add to Bag</span>-->
+<!--									</div>-->
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block content2 %}
+<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6" style="height:200px;">
+					<div class="login_box_img">
+							<img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="">
+								<div class="hover">
+									<h4>New to our website?</h4>
+								</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Register</h3>
+						<form class="row login_form" action="" method="POST" novalidate="novalidate">
+							{% csrf_token %}
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control"  name="u" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control"  name="p" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control"  name="cp" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control"  name="fn" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control"  name="ln" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="email" class="form-control"  name="e" placeholder="Email ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Register</button>
+
+							</div>
+							<div>
+								{% if messages %}
+									<ul class="messages">
+    									{% for message in messages %}
+    										<li style="color:red;">{{ message }}</li>
+    									{% endfor %}
+									</ul>
+								{% endif %}
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+
+{% endblock %}

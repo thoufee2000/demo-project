@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content1 %}
+<!-- start banner Area -->
+	<section class="banner-area">
+		<div class="container">
+			<div class="row fullscreen align-items-center justify-content-start">
+				<div class="col-lg-12">
+					<div class="active-banner-slider owl-carousel">
+						<!-- single-slide -->
+						<div class="row single-slide align-items-center d-flex">
+							<div class="col-lg-5 col-md-6 mt-5">
+								<div class="banner-content">
+									<h1>{{product.name}}</h1>
+									<p>{{product.desc}}</p>
+<!--									<div class="add-bag d-flex align-items-center">-->
+<!--										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>-->
+<!--										<span class="add-text text-uppercase">Add to Bag</span>-->
+<!--									</div>-->
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="" alt="">
+								</div>
+							</div>
+						</div>
+						<!-- single-slide -->
+						<div class="row single-slide">
+							<div class="col-lg-5">
+								<div class="banner-content">
+									<h1>Nike New <br>Collection!</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+<!--									<div class="add-bag d-flex align-items-center">-->
+<!--										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>-->
+<!--										<span class="add-text text-uppercase">Add to Bag</span>-->
+<!--									</div>-->
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block content2 %}
+<div class="container mt-5 mb-5">
+	<div class="row">
+    	<div class="col">
+      		<img class="img-fluid" src="{{product.image.url}}" alt="">
+		</div>
+    	<div class="col">
+			<h4>{{product.name}}</h4>
+			<p class="fw-bold">PRICE : {{product.price}}</p>
+			<p class="fw-bold">STOCK : {{product.stock}}</p>
+			{% if product.stock > 0 %}
+				<p style="color:green;">STOCK AVAILABLE</p>
+			{% else %}
+				<p style="color:red;">STOCK UNAVAILABLE</p>
+			{% endif %}
+
+			{% if user.is_superuser == True %}
+				{% if product.stock > 0 %}
+					<div class="add-bag d-flex align-items-center">
+						<a class="add-btn" href="{% url 'admin:index' %}"><span class="lnr lnr-cross"></span></a>
+						<span class="add-text text-uppercase">Add Stock</span>
+					</div>
+				{% else %}
+					<div class="add-bag d-flex align-items-center">
+						<a class="add-btn" href="{% url 'admin:index' %}"><span class="lnr lnr-cross"></span></a>
+						<span class="add-text text-uppercase">Add Stock</span>
+					</div>
+				{% endif %}
+			{% else %}
+				<div class="add-bag d-flex align-items-center">
+					<a class="add-btn" href="{% url 'cart:add_to_cart' product.id %}"><span class="lnr lnr-cross"></span></a>
+					<span class="add-text text-uppercase">Add to Bag</span>
+				</div>
+				<div class="add-bag d-flex align-items-center">
+					<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+					<span class="add-text text-uppercase">Buy Now</span>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}
